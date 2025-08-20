@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Café Aroma - Login & Cadastros</title>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-coffee" style="left: 10%; animation-delay: 0s;">☕</div>
+        <div class="floating-coffee" style="left: 20%; animation-delay: 3s;">🫘</div>
+        <div class="floating-coffee" style="left: 80%; animation-delay: 6s;">☕</div>
+        <div class="floating-coffee" style="left: 90%; animation-delay: 9s;">🧁</div>
+        <div class="floating-coffee" style="left: 60%; animation-delay: 12s;">☕</div>
+    </div>
+
+    <div class="header">
+        <div class="logo">Café Aroma</div>
+        <div class="tagline">Onde cada gole é uma experiência única</div>
+    </div>
+
+    <div class="container">
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showForm('login')">Login</button>
+            <button class="nav-btn" onclick="showForm('cliente')">Cadastro de Cliente</button>
+            <button class="nav-btn" onclick="showForm('produto')">Cadastro de Produto</button>
+        </div>
+
+        <!-- Formulário de Login -->
+        <div id="login-form" class="form-container active">
+            <h2 class="form-title">Acesso ao Sistema</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email-login">E-mail <span class="required">*</span></label>
+                    <input type="email" id="email-login" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha-login">Senha <span class="required">*</span></label>
+                    <input type="password" id="senha-login" name="senha" required>
+                </div>
+                <button type="submit" class="submit-btn">Entrar</button>
+            </form>
+        </div>
+
+        <!-- Formulário de Cadastro de Cliente -->
+        <div id="cliente-form" class="form-container">
+            <h2 class="form-title">Cadastro de Cliente</h2>
+            <form onsubmit="handleClienteCadastro(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo <span class="required">*</span></label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF <span class="required">*</span></label>
+                        <input type="text" id="cpf" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email-cliente">E-mail <span class="required">*</span></label>
+                        <input type="email" id="email-cliente" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone <span class="required">*</span></label>
+                        <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\) \d{4,5}-\d{4}" placeholder="(11) 99999-9999" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço Completo</label>
+                    <textarea id="endereco" name="endereco" placeholder="Rua, número, bairro, cidade, CEP"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data-nascimento">Data de Nascimento</label>
+                        <input type="date" id="data-nascimento" name="dataNascimento">
+                    </div>
+                    <div class="form-group">
+                        <label for="genero">Gênero</label>
+                        <select id="genero" name="genero">
+                            <option value="">Selecione</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outros">depende do dia</option>
+                            <option value="nao-informar">Macaco de Combate Tatico</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="senha-cliente">Senha <span class="required">*</span></label>
+                    <input type="password" id="senha-cliente" name="senha" minlength="6" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirma-senha">Confirmar Senha <span class="required">*</span></label>
+                    <input type="password" id="confirma-senha" name="confirmaSenha" minlength="6" required>
+                </div>
+                <button type="submit" class="submit-btn">Cadastrar Cliente</button>
+            </form>
+        </div>
+
+        <!-- Formulário de Cadastro de Produto -->
+        <div id="produto-form" class="form-container">
+            <h2 class="form-title">Cadastro de Produto</h2>
+            <form onsubmit="handleProdutoCadastro(event)">
+                <div class="form-group">
+                    <label for="nome-produto">Nome do Produto <span class="required">*</span></label>
+                    <input type="text" id="nome-produto" name="nomeProduto" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoria <span class="required">*</span></label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Selecione a categoria</option>
+                        <option value="bebidas-quentes">Bebidas Quentes</option>
+                        <option value="bebidas-geladas">Bebidas Geladas</option>
+                        <option value="cafes-especiais">Cafés Especiais</option>
+                        <option value="doces">Doces</option>
+                        <option value="salgados">Salgados</option>
+                        <option value="paes-bolos">Pães e Bolos</option>
+                        <option value="sobremesas">Sobremesas</option>
+                        <option value="graos-moidos">Grãos e Moídos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição do Produto</label>
+                    <textarea id="descricao" name="descricao" placeholder="Descreva os ingredientes, características e diferenciais do produto"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preco">Preço (R$) <span class="required">*</span></label>
+                        <input type="number" id="preco" name="preco" step="0.01" min="0" placeholder="0,00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="estoque">Quantidade em Estoque</label>
+                        <input type="number" id="estoque" name="estoque" min="0" placeholder="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tamanho">Tamanho/Volume</label>
+                        <select id="tamanho" name="tamanho">
+                            <option value="">Selecione</option>
+                            <option value="pequeno">Pequeno (200ml)</option>
+                            <option value="medio">Médio (300ml)</option>
+                            <option value="grande">Grande (500ml)</option>
+                            <option value="extra-grande">Extra Grande (700ml)</option>
+                            <option value="unitario">Unitário</option>
+                            <option value="fatia">Fatia</option>
+                            <option value="porcao">Porção</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="disponibilidade">Disponibilidade</label>
+                        <select id="disponibilidade" name="disponibilidade">
+                            <option value="disponivel">Disponível</option>
+                            <option value="indisponivel">Indisponível</option>
+                            <option value="temporada">Produto de Temporada</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ingredientes">Ingredientes Principais</label>
+                    <input type="text" id="ingredientes" name="ingredientes" placeholder="Ex: Café arábica, leite, açúcar, canela">
+                </div>
+                <div class="form-group">
+                    <label for="observacoes">Observações</label>
+                    <textarea id="observacoes" name="observacoes" placeholder="Informações adicionais, alergênicos, restrições, etc."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Cadastrar Produto</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; Isso custou tanto da minha sanidade mental que marquei meu suicidio pra dia 24/09/25</p>
+    </div>
+
+    <script>
+        function showForm(formType) {
+            // Remove active class from all forms and buttons
+            const forms = document.querySelectorAll('.form-container');
+            const buttons = document.querySelectorAll('.nav-btn');
+            
+            forms.forEach(form => form.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to selected form and button
+            document.getElementById(formType + '-form').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email-login').value;
+            alert(`Login realizado com sucesso!\nE-mail: ${email}`);
+        }
+
+        function handleClienteCadastro(event) {
+            event.preventDefault();
+            const senha = document.getElementById('senha-cliente').value;
+            const confirmaSenha = document.getElementById('confirma-senha').value;
+            
+            if (senha !== confirmaSenha) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+            
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email-cliente').value;
+            
+            alert(`Cliente cadastrado com sucesso!\nNome: ${nome}\nE-mail: ${email}`);
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        function handleProdutoCadastro(event) {
+            event.preventDefault();
+            const nomeProduto = document.getElementById('nome-produto').value;
+            const categoria = document.getElementById('categoria').value;
+            const preco = document.getElementById('preco').value;
+            
+            alert(`Produto cadastrado com sucesso!\nNome: ${nomeProduto}\nCategoria: ${categoria}\nPreço: R$ ${preco}`);
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Add mask to CPF input
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
+            }
+        });
+
+        // Add mask to phone input
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                if (value.length <= 10) {
+                    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                    value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                } else {
+                    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                }
+                e.target.value = value;
+            }
+        });
+
+        // Add floating animation to background elements
+        setInterval(() => {
+            const coffee = document.createElement('div');
+            coffee.className = 'floating-coffee';
+            coffee.textContent = ['☕', '🫘', '🧁'][Math.floor(Math.random() * 3)];
+            coffee.style.left = Math.random() * 100 + '%';
+            coffee.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            document.querySelector('.floating-elements').appendChild(coffee);
+            
+            setTimeout(() => {
+                coffee.remove();
+            }, 20000);
+        }, 5000);
+    </script>
+</body>
+</html>
